@@ -41,7 +41,7 @@ createPlayerObject (player2);
 let player1Choice = prompt('Player 1, enter a value between 0 and 8');
 let player2Choice= prompt('Player 2, enter a value between 0 and 8');
 player1Choice*=1;
-player1Choice*=1;
+player2Choice*=1;
 
 console.log(player1Choice);
 
@@ -72,9 +72,18 @@ if (gameboard.includes(player1Choice))
 
     {gameboard[player1Choice]='X';
         console.log(gameboard[player1Choice]);
+        console.log('first if stat');
+        console.log(gameboard);
+       
     }
 
-    else {console.log('nada');}
+   if (gameboard.includes(player2Choice))
+
+
+        {gameboard[player2Choice]='0';
+        console.log('second if stat');
+            console.log(gameboard);
+        }
 
 
 
