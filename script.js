@@ -16,7 +16,6 @@ const displayController = function () {
 function createPlayerObject (player) {
 
     const playerName = player;
-   console.log({player});
     return {player}
 }
 
@@ -34,8 +33,6 @@ let player2Wins = false;
 
 function playGame () {
     let gameOver = false;
-    console.log(gameOver);
-    console.log(typeof(gameOver));
 
 
 
@@ -54,7 +51,6 @@ function playGame () {
         
         }   
 
-        console.log(gameboard);
 
 
 
@@ -73,7 +69,6 @@ createPlayerObject (player2);
 while (gameOver===false) {
 
 {
-   console.log(gameboard.length); 
    checkIfNumber();
 let player1Choice = prompt(`${player1}, enter a value between 0 and 8`);
 //To stop prompt asking for number even when all elements have been filled with Xs and 0s
@@ -103,8 +98,6 @@ if (player1Choice<0 || player1Choice>8)
 
 if (gameboard.includes(player1Choice)) {
     gameboard[player1Choice]='X';}
-console.log(player1Choice);
-console.log(gameboard);
 
 
 if ((gameboard[0]==='X' && gameboard[1]==='X' && gameboard[2]==='X') ||
@@ -119,30 +112,21 @@ if ((gameboard[0]==='X' && gameboard[1]==='X' && gameboard[2]==='X') ||
     console.log(`${player1} won!`);
     gameOver=true;
     player1Wins = true;
-    console.log(gameOver);
 }
 
    
 
-console.log(gameboard);
 let player2Choice;
-console.log(gameOver);
 if (gameOver===false)
 {   checkIfNumber();
 
     player2Choice= prompt(`${player2}, enter a value between 0 and 8`);}
 else {alert(`${player1} won!`)};
 player2Choice*=1;
-console.log(player1Choice);
-console.log(player2Choice);
 if (gameboard[player2Choice]==="X" || gameboard[player2Choice]==="0")
-// if (player2Choice === player1Choice) {player2Choice=prompt('That number has already been selected, please select another')};
-// if (gameboard[player2Choice]==='X' || gameboard[player2Choice]==='0')
     {   checkIfNumber();
 
         player2Choice = prompt(`${player2}, that number has already been selected, please select another number`)}
-console.log(player2Choice);
-console.log(gameboard);
 
 if (player2Choice<0 || player2Choice>8)
     {   checkIfNumber();
@@ -151,8 +135,6 @@ if (player2Choice<0 || player2Choice>8)
 
 if (gameboard.includes(player2Choice)) {
     gameboard[player2Choice]='0';}
-console.log(player2Choice);
-console.log(gameboard);
 if 
 ((gameboard[0]==='0' && gameboard[1]==='0' && gameboard[2]==='0') ||
 (gameboard[3]==='0' && gameboard[4]==='0' && gameboard[5]==='0') ||
@@ -180,8 +162,6 @@ let filteredArray = gameboard.filter((gameboardItem) => typeof(gameboardItem) ==
 if (filteredArray.length===0){alert('The game is over - no winners this time!');
     gameOver===true;
 }
-  console.log(filteredArray)
-console.log(filteredArray.length);
 }
 
 }
@@ -189,8 +169,6 @@ console.log(filteredArray.length);
         
 
 
-
-console.log(gameboard);
 
 
 
