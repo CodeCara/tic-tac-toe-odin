@@ -1,11 +1,6 @@
 
-
-//createGameboard Object, IIFE structure, as will only be called once
-
-
-
 //displayController, IIFE structure, as will only be called once
-let displayController = function () {
+const displayController = function () {
 
 //do something
 
@@ -15,12 +10,9 @@ let displayController = function () {
     
 //control game flow
 //tuck playGame inside createPlayerObject to enable access to const playerName(closures)
-function playGame ()
-{
 
-    //createPlayer factory function
-    //assign X to player1 and O to player2
 
+//CREATE PLAYER FUNCTION
 function createPlayerObject (player) {
 
     const playerName = player;
@@ -29,66 +21,217 @@ function createPlayerObject (player) {
 }
 
 
-
-let gameboard = function (){
-    //empty array elements upon which Xs or 0s can be generated
-  return new Array(9);
-  
-
-} ();
+//CREATE GAMEBOARD FUNCTION
 
 
-for (let i= 0; i < gameboard.length ; i++)
-    {//assigning values equivalent to index to each array position
-        //equate sqaures to 1 to 9 rather than 0 to 8, to make the board easier to visualise
-        gameboard[i]=i+1;
+
+
+let player1Wins = false;
+let player2Wins = false;
+
+
+
+
+
+
+
+
+
+
+
+function playGame () {
+    let gameOver = false;
+    console.log(gameOver);
+    console.log(typeof(gameOver));
+
+
+
+
+    let gameboard = function (){
+        //empty array elements upon which Xs or 0s can be generated
+      return new Array(9);
+      
     
-       
-    }   
+    } ();
+    
+    
+    for (let i= 0; i < gameboard.length ; i++)
+        {
+            gameboard[i]=i;
+        
+        }   
+
+        console.log(gameboard);
 
 
 
-function playRound () {
-const player1 = prompt('Enter the name of player 1');
+
+
+const player1 = prompt('Enter the name of player 1 who will play Xs');
 createPlayerObject (player1);
 
 //need to figure out how to associate name grabbed here with createPlayerObject
-const player2 = prompt('Enter the name of player 2');
+const player2 = prompt('Enter the name of player 2 who will play 0s');
 createPlayerObject (player2);
-let player1Choice = prompt('Player 1, enter a value between 1 and 9');
-if (player1Choice<1 || player1Choice>9)
-{player1Choice = prompt('You may only enter a value between 1 and 9');}
-console.log(player1Choice);
 
 
 
-let player2Choice= prompt('Player 2, enter a value between 1 and 9');
-if (player2Choice<1 || player2Choice>9)
-    {player2Choice = prompt('You may only enter a value between 1 and 9');}
-console.log(player2Choice);
 
+while (gameOver===false) {
 
-
+{
+   console.log(gameboard.length); 
+   checkIfNumber();
+let player1Choice = prompt('Player 1, enter a value between 0 and 8');
+//To stop prompt asking for number even when all elements have been filled with Xs and 0s
+checkIfNumber();
 player1Choice*=1;
-player2Choice*=1;
-if (gameboard.includes(player1Choice)) {
-    gameboard[player1Choice]='X';
-    
-   // player1Choice = prompt ('This number has already been selected, choose a different one');
 
+
+
+
+if (gameboard[player1Choice]==='X' || gameboard[player1Choice]==='0')
+{   checkIfNumber();
+
+    player1Choice = prompt('That number has already been selected, please select another number')
+
+checkIfNumber();
+player1Choice*=1;
 }
+
+if (player1Choice<0 || player1Choice>8)
+{   checkIfNumber();
+
+    player1Choice = prompt('You may only enter a value between 0 and 8');
+    checkIfNumber();
+    player1Choice*=1;
+}
+
+
+if (gameboard.includes(player1Choice)) {
+    gameboard[player1Choice]='X';}
+console.log(player1Choice);
+console.log(gameboard);
+
+
+if ((gameboard[0]==='X' && gameboard[1]==='X' && gameboard[2]==='X') ||
+(gameboard[3]==='X' && gameboard[4]==='X' && gameboard[5]==='X') ||
+(gameboard[6]==='X' && gameboard[7]==='X' && gameboard[8]==='X') ||   
+(gameboard[0]==='X' && gameboard[3]==='X' && gameboard[6]==='X') ||
+(gameboard[1]==='X' && gameboard[4]==='X' && gameboard[7]==='X') ||
+(gameboard[2]==='X' && gameboard[5]==='X' && gameboard[8]==='X') ||
+(gameboard[0]==='X' && gameboard[4]==='X' && gameboard[8]==='X') ||
+(gameboard[6]==='X' && gameboard[4]==='X' && gameboard[2]==='X'))
+{
+    console.log(`${player1} won!`);
+    gameOver=true;
+    player1Wins = true;
+    console.log(gameOver);
+}
+
+   
+
+console.log(gameboard);
+let player2Choice;
+console.log(gameOver);
+if (gameOver===false)
+{   checkIfNumber();
+
+    player2Choice= prompt('Player 2, enter a value between 0 and 8');}
+else {alert(`${player1} won!`)};
+player2Choice*=1;
+console.log(player1Choice);
+console.log(player2Choice);
+if (gameboard[player2Choice]==="X" || gameboard[player2Choice]==="0")
+// if (player2Choice === player1Choice) {player2Choice=prompt('That number has already been selected, please select another')};
+// if (gameboard[player2Choice]==='X' || gameboard[player2Choice]==='0')
+    {   checkIfNumber();
+
+        player2Choice = prompt('That number has already been selected, please select another number')}
+console.log(player2Choice);
+console.log(gameboard);
+
+if (player2Choice<0 || player2Choice>8)
+    {   checkIfNumber();
+
+        player2Choice = prompt('You may only enter a value between 0 and 8');}
 
 if (gameboard.includes(player2Choice)) {
-    gameboard[player2Choice]='0';
-
-    // player2Choice = prompt ('This number has already been selected, choose a different one');
-
-} 
+    gameboard[player2Choice]='0';}
+console.log(player2Choice);
 console.log(gameboard);
+if 
+((gameboard[0]==='0' && gameboard[1]==='0' && gameboard[2]==='0') ||
+(gameboard[3]==='0' && gameboard[4]==='0' && gameboard[5]==='0') ||
+(gameboard[6]==='0' && gameboard[7]==='0' && gameboard[8]==='0') ||
+(gameboard[0]==='0' && gameboard[3]==='0' && gameboard[6]==='0') ||
+(gameboard[1]==='0' && gameboard[4]==='0' && gameboard[7]==='0') ||
+(gameboard[2]==='0' && gameboard[5]==='0' && gameboard[8]==='0') ||
+(gameboard[0]==='0' && gameboard[4]==='0' && gameboard[8]==='0') ||
+(gameboard[6]==='0' && gameboard[4]==='0' && gameboard[2]==='0'))
+{
+    console.log(`${player2} wins!`);
+    gameOver=true;
+    player2Wins=true;
+    prompt(`${player2} 2 won!`)
+
+
+
+
+
+
+
+
+
+
+    
+   }
+
+//Includes check only need to check for one number as actually checking if all squars have been selected
+//  if (gameboard.includes(0) && player1Wins===false && player2Wins===false)  {console.log('Nobody wins this round');}  
+
+
+ function checkIfNumber() {
+let filteredArray = gameboard.filter((gameboardItem) => typeof(gameboardItem) ==='number');
+if (filteredArray.length===0){console.log('The game is over - no winners this time!')}
+  console.log(filteredArray)
+console.log(filteredArray.length);
+}
+
+}
+ }
+        
+
+
+ 
+
+
+
+//THIS ONE below works
+// function checkIfNumber() {
+//     for (let i =0; i<gameboard.length; i++)
+//     {
+        
+//         {console.log(gameboard[i])
+//         }
+
+// }
+ 
+
+// }
+
+
+
+
+
+console.log(gameboard);
+
+
+
 }
 
 
-playRound();
+playGame();
 
 // switch (a,b,c)
 // {case: a===b; 
@@ -100,15 +243,7 @@ playRound();
 
 // }
 
-}
-
-playGame();
 
 
-
-
-
-
-    
 
 
