@@ -21,20 +21,13 @@ function createPlayerObject (player) {
 }
 
 
-//CREATE GAMEBOARD FUNCTION
 
 
 
 
+//Use these later possibly?
 let player1Wins = false;
 let player2Wins = false;
-
-
-
-
-
-
-
 
 
 
@@ -46,7 +39,7 @@ function playGame () {
 
 
 
-
+//CREATE GAMEBOARD FUNCTION
     let gameboard = function (){
         //empty array elements upon which Xs or 0s can be generated
       return new Array(9);
@@ -67,11 +60,11 @@ function playGame () {
 
 
 
-const player1 = prompt('Enter the name of player 1 who will play Xs');
+const player1 = prompt('Enter the name of Player 1 who will play Xs');
 createPlayerObject (player1);
 
 //need to figure out how to associate name grabbed here with createPlayerObject
-const player2 = prompt('Enter the name of player 2 who will play 0s');
+const player2 = prompt('Enter the name of Player 2 who will play 0s');
 createPlayerObject (player2);
 
 
@@ -82,7 +75,7 @@ while (gameOver===false) {
 {
    console.log(gameboard.length); 
    checkIfNumber();
-let player1Choice = prompt('Player 1, enter a value between 0 and 8');
+let player1Choice = prompt(`${player1}, enter a value between 0 and 8`);
 //To stop prompt asking for number even when all elements have been filled with Xs and 0s
 checkIfNumber();
 player1Choice*=1;
@@ -93,7 +86,7 @@ player1Choice*=1;
 if (gameboard[player1Choice]==='X' || gameboard[player1Choice]==='0')
 {   checkIfNumber();
 
-    player1Choice = prompt('That number has already been selected, please select another number')
+    player1Choice = prompt(`${player1}, that number has already been selected, please select another number`)
 
 checkIfNumber();
 player1Choice*=1;
@@ -102,7 +95,7 @@ player1Choice*=1;
 if (player1Choice<0 || player1Choice>8)
 {   checkIfNumber();
 
-    player1Choice = prompt('You may only enter a value between 0 and 8');
+    player1Choice = prompt(`${player1}, you may only enter a value between 0 and 8`);
     checkIfNumber();
     player1Choice*=1;
 }
@@ -137,7 +130,7 @@ console.log(gameOver);
 if (gameOver===false)
 {   checkIfNumber();
 
-    player2Choice= prompt('Player 2, enter a value between 0 and 8');}
+    player2Choice= prompt(`${player2}, enter a value between 0 and 8`);}
 else {alert(`${player1} won!`)};
 player2Choice*=1;
 console.log(player1Choice);
@@ -147,14 +140,14 @@ if (gameboard[player2Choice]==="X" || gameboard[player2Choice]==="0")
 // if (gameboard[player2Choice]==='X' || gameboard[player2Choice]==='0')
     {   checkIfNumber();
 
-        player2Choice = prompt('That number has already been selected, please select another number')}
+        player2Choice = prompt(`${player2}, that number has already been selected, please select another number`)}
 console.log(player2Choice);
 console.log(gameboard);
 
 if (player2Choice<0 || player2Choice>8)
     {   checkIfNumber();
 
-        player2Choice = prompt('You may only enter a value between 0 and 8');}
+        player2Choice = prompt(`${player2}, you may only enter a value between 0 and 8`);}
 
 if (gameboard.includes(player2Choice)) {
     gameboard[player2Choice]='0';}
@@ -175,15 +168,6 @@ if
     player2Wins=true;
     prompt(`${player2} 2 won!`)
 
-
-
-
-
-
-
-
-
-
     
    }
 
@@ -193,7 +177,9 @@ if
 
  function checkIfNumber() {
 let filteredArray = gameboard.filter((gameboardItem) => typeof(gameboardItem) ==='number');
-if (filteredArray.length===0){console.log('The game is over - no winners this time!')}
+if (filteredArray.length===0){alert('The game is over - no winners this time!');
+    gameOver===true;
+}
   console.log(filteredArray)
 console.log(filteredArray.length);
 }
@@ -203,35 +189,17 @@ console.log(filteredArray.length);
         
 
 
- 
-
-
-
-//THIS ONE below works
-// function checkIfNumber() {
-//     for (let i =0; i<gameboard.length; i++)
-//     {
-        
-//         {console.log(gameboard[i])
-//         }
-
-// }
- 
-
-// }
-
-
-
-
 
 console.log(gameboard);
 
 
 
+
+
 }
 
-
 playGame();
+
 
 // switch (a,b,c)
 // {case: a===b; 
