@@ -109,7 +109,7 @@ if ((gameboard[0]==='X' && gameboard[1]==='X' && gameboard[2]==='X') ||
 (gameboard[0]==='X' && gameboard[4]==='X' && gameboard[8]==='X') ||
 (gameboard[6]==='X' && gameboard[4]==='X' && gameboard[2]==='X'))
 {
-    console.log(`${player1} won!`);
+    console.log(`${player1} wins!  GAME OVER!`);
     gameOver=true;
     player1Wins = true;
 }
@@ -145,7 +145,7 @@ if
 (gameboard[0]==='0' && gameboard[4]==='0' && gameboard[8]==='0') ||
 (gameboard[6]==='0' && gameboard[4]==='0' && gameboard[2]==='0'))
 {
-    console.log(`${player2} wins!`);
+    console.log(`${player2} wins!.  GAME OVER!`);
     gameOver=true;
     player2Wins=true;
     prompt(`${player2} 2 won!`)
@@ -160,6 +160,7 @@ if
  function checkIfNumber() {
 let filteredArray = gameboard.filter((gameboardItem) => typeof(gameboardItem) ==='number');
 if (filteredArray.length===0){alert('The game is over - no winners this time!');
+console.log('The game is over - no winners this time!');
     gameOver===true;
 }
 }
@@ -170,7 +171,7 @@ if (filteredArray.length===0){alert('The game is over - no winners this time!');
 
 
 
-
+return({player1, player2});
 
 
 
@@ -178,7 +179,7 @@ if (filteredArray.length===0){alert('The game is over - no winners this time!');
 
 playGame();
 
-
+console.log({});
 // switch (a,b,c)
 // {case: a===b; 
 // console.log('it works');
