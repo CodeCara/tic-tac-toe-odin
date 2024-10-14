@@ -6,27 +6,26 @@ const displayController = function () {
     
     } ();
     
-    
+    //11 oct 24...
+
+    //need to sort out playerWins code (tried to ref object, player is not defined, tried to 'call from object)
+
+
+
+
+
         
-    //control game flow
-    //tuck playGame inside createPlayerObject to enable access to const playerName(closures)
-    
-    
-    //CREATE PLAYER FUNCTION
     function createPlayerObject (player) {
-    
-        const playerName = player;
-        return {player}
+    const player = prompt('Enter player name');  
+    doSomething = function(){console.log('rando func')};  // 
+        const playerWins=false;
+        return {player, playerWins, doSomething}
     }
     
+  
     
-    
-    
-    
-    
-    //Use these later possibly?
-    let player1Wins = false;
-    let player2Wins = false;
+    // let player1Wins = false;
+    // let player2Wins = false;
     
     
     
@@ -36,16 +35,12 @@ const displayController = function () {
     
        
     
-    //CREATE GAMEBOARD FUNCTION
-  
    let gameboard = function (){
-    //empty array elements upon which Xs or 0s can be generated
   return new Array(9);
   
 
 } ();
 
-//Cannot put loop in gameboard function as not initialised before being called  
 for (let i= 0; i < gameboard.length ; i++)
     {
         gameboard[i]=i;
@@ -53,23 +48,13 @@ for (let i= 0; i < gameboard.length ; i++)
     } 
 
 
-        
-      
-          
+createPlayerObject.player1();
+    // const player1 = prompt('Enter the name of Player 1 who will play Xs');
+    // createPlayerObject (player1);
     
+    // const player2 = prompt('Enter the name of Player 2 who will play 0s');
+    // createPlayerObject (player2);
     
-    
-    
-    
-    
-    const player1 = prompt('Enter the name of Player 1 who will play Xs');
-    createPlayerObject (player1);
-    
-    //need to figure out how to associate name grabbed here with createPlayerObject
-    const player2 = prompt('Enter the name of Player 2 who will play 0s');
-    createPlayerObject (player2);
-    
-//Check for a no-win situation
     const checkIfNumber = function() {
         let filteredArray = gameboard.filter((gameboardItem) => typeof(gameboardItem) ==='number');
         if (filteredArray.length===0){alert('The game is over - no winners this time!');
@@ -85,7 +70,6 @@ for (let i= 0; i < gameboard.length ; i++)
     {
        checkIfNumber();
     let player1Choice = prompt(`${player1}, enter a value between 0 and 8`);
-    //To stop prompt asking for number even when all elements have been filled with Xs and 0s
     checkIfNumber();
     player1Choice*=1;
     
@@ -127,7 +111,7 @@ for (let i= 0; i < gameboard.length ; i++)
     {
         console.log(`${player1} wins!  GAME OVER!`);
         gameOver=true;
-        player1Wins = true;
+        player1.playerWins = true;
     }
     
        
@@ -163,7 +147,7 @@ for (let i= 0; i < gameboard.length ; i++)
     {
         console.log(`${player2} wins!.  GAME OVER!`);
         gameOver=true;
-        player2Wins=true;
+        player2.playerWins=true;
         prompt(`${player2} 2 won!`)
     
         
@@ -185,12 +169,15 @@ console.log({player1, player2, createPlayerObject, playGame});
     
     }
     
-    let playFirstGame = playGame();
-    // playGame();
+   
+    // let johnPlayer = createPlayerObject('john');
+    // console.log({johnPlayer});
+
+    playGame();
     
    
    
-    // console.log(playFirstGame.player1);
+    ;
     
    
     // switch (a,b,c)

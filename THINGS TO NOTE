@@ -1,2 +1,6 @@
 WHAT OBJECTS NEEDS TO BE RETURNED FROM THE FACTORIES?
 
+should be playing a computer rather than a person, i.e. random choice needs to be implemented
+ and distinguish from each other to read in longer name variables
+
+ check if checkIfNumber has been used in too many places?  (unecessarily)

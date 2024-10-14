@@ -1,4 +1,7 @@
 
+//LOGIC WORKS BUT THIS IS NOT OOP CODE
+
+
 //displayController, IIFE structure, as will only be called once
 const displayController = function () {
 
@@ -6,8 +9,7 @@ const displayController = function () {
 
 } ();
 
-
-    
+ 
 //control game flow
 //tuck playGame inside createPlayerObject to enable access to const playerName(closures)
 
@@ -18,9 +20,6 @@ function createPlayerObject (player) {
     const playerName = player;
     return {player}
 }
-
-
-
 
 
 
@@ -52,10 +51,6 @@ function playGame () {
         }   
 
 
-
-
-
-
 const player1 = prompt('Enter the name of Player 1 who will play Xs');
 createPlayerObject (player1);
 
@@ -65,11 +60,13 @@ createPlayerObject (player2);
 
 
 
-
 while (gameOver===false) {
 
 {
-   checkIfNumber();
+
+
+   //13/10 taking first checkIfNumbers out 
+//    checkIfNumber();
 let player1Choice = prompt(`${player1}, enter a value between 0 and 8`);
 //To stop prompt asking for number even when all elements have been filled with Xs and 0s
 checkIfNumber();
@@ -79,7 +76,8 @@ player1Choice*=1;
 
 
 if (gameboard[player1Choice]==='X' || gameboard[player1Choice]==='0')
-{   checkIfNumber();
+{  
+    //  checkIfNumber();
 
     player1Choice = prompt(`${player1}, that number has already been selected, please select another number`)
 
@@ -175,11 +173,11 @@ return({player1, player2});
 
 
 
-}
+};
+
+
 
 playGame();
-
-console.log({});
 // switch (a,b,c)
 // {case: a===b; 
 // console.log('it works');
