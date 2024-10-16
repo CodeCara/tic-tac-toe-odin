@@ -4,3 +4,5 @@ should be playing a computer rather than a person, i.e. random choice needs to b
  and distinguish from each other to read in longer name variables
 
  check if checkIfNumber has been used in too many places?  (unecessarily)
+
+ scoreboad not centered, jumped due to widerning of scoreboard - fix with positioning

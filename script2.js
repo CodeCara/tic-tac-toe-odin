@@ -6,11 +6,8 @@
 // document.body.onload = displayController;
 let displayController = function(){
 
-const board = document.createElement('div');
-const body = document.body;
-board.style.width = '10rem';
-board.style.backgroundColor='red';
-body.appendChild('board');
+
+
 
 
 
@@ -222,8 +219,8 @@ return {winner};
 }
 
 
-let  currentGame = playGame();
-console.log({currentGame});
+// let  currentGame = playGame();
+// console.log({currentGame});
 
 
 
