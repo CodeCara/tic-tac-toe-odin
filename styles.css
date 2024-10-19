@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    color: white;
+    color:black;
 }
 
 
@@ -112,6 +112,8 @@ h1{width: 17rem;
     margin: auto;
 padding-top: 3rem;}
 /* background-color: red;} */
+
+h3 {margin-bottom: 1rem;}
 
 button {
 margin-top: 1rem;

@@ -1,76 +1,65 @@
+//18/10/24
+//created new JS file to work on diplayController function
+
 
 //14/10/24 changed createFirstPlayerObject to firstPlayerObject (same for second)
 
 //playerWings AND score, both probably not needed together
 
 // document.body.onload = displayController;
+
+
+// ******DISPLAY CONTROLLER FUNCTION******
+
 let displayController = function(){
     let enterButton = document.querySelector('.enter-button');
     let player1NameSelect = document.querySelector('.player1');
     let player2NameSelect = document.querySelector('.player2');
- 
+    let square1= document.querySelector('.square-1');
+    let square2= document.querySelector('.square-2');
+    let square3= document.querySelector('.square-3');
+    let square4= document.querySelector('.square-4');
+    let square5= document.querySelector('.square-5');
+    let square6= document.querySelector('.square-6');
+    let square7= document.querySelector('.square-7');
+    let square8= document.querySelector('.square-8');
+    let square9= document.querySelector('.square-9');
+
+    let square1Content= square1.innerText;
+    let square2Content= square2.innerText;
+    let square3Content= square3.innerText;
+    let square4Content= square4.innerText;
+    let square5Content= square5.innerText;
+    let square6Content= square6.innerText;
+    let square7Content= square7.innerText;
+    let square8Content= square8.innerText;
+    let square9Content= square9.innerText;
+
+    let firstPlayerName = '';
+    let secondPlayerName = '';
 
 
-
-
-
-
-    
-    let captureNameInputs = function () {
-        
+    let captureNameInputs = function() {
+        let firstPlayerName = player1NameSelect.value;
+       let secondPlayerName = player2NameSelect.value; 
+       displayController.firstPlayerName= firstPlayerName;
+       displayController.secondPlayerName= secondPlayerName;
        
-   let player1Name = player1NameSelect.value;
-  let player2Name = player2NameSelect.value;
-console.log(player1Name);
-console.log(player2Name);
+     return {firstPlayerName, secondPlayerName}
+     
+         }
 
-return {player1Name, player2Name}
+         enterButton.addEventListener('click', captureNameInputs);
+         console.log({captureNameInputs});
+  
 
-    };
-    
-    
+return {firstPlayerName, secondPlayerName, square1Content, square2Content, square3Content, square4Content, square5Content, square6Content, square7Content, square8Content, square9Content};
 
-    
-    enterButton.addEventListener('click', captureNameInputs);
-    //   console.log(captureNameInputs);
-console.log(captureNameInputs);
-
- return (player1Name, player2Name)
-};
-
-// console.log(captureNameInputs);
-
-//********************************************************* */
+        }();
+console.log({displayController});
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// let firstPlayerNameInput = document.querySelector('player1').value;
-
-// console.log(firstPlayerNameInput);
-
-
-
-// }();
-
-
-
+// ******GAMEBOARD FUNCTION******
 let gameboard = function (){
     //empty array elements upon which Xs or 0s can be generated
   return new Array(9);
@@ -85,6 +74,8 @@ for (let i= 0; i < gameboard.length ; i++)
     
     }  
 
+
+// ******CREATE PLAYER FUNCTION******
 let createPlayerObject = function(playerName) {
    
     const name = playerName; 
@@ -96,7 +87,7 @@ let createPlayerObject = function(playerName) {
         return {name, currentPlayerChoice, score, playerWins}
     }
 
-
+// ******PLAYGAME FUNCTION******
 let playGame = function () {
     let gameOver = false;
     let winner;
@@ -104,7 +95,7 @@ let playGame = function () {
 
 
 
-const firstPlayerObject = createPlayerObject(displayController.player1Name);
+const firstPlayerObject = createPlayerObject('john');
 const firstPlayerName = firstPlayerObject.name;
 
 const secondPlayerObject = createPlayerObject('dave');
@@ -113,7 +104,7 @@ const secondPlayerName = secondPlayerObject.name;
 
 
 
-//********CHECK CHECKIFNUMBER FOR DISPLAY FUNCTION******* */
+// ******CHECK CHECKIFNUMBER FOR DISPLAY FUNCTION******
 const checkIfNumber = function() {
     let filteredArray = gameboard.filter((gameboardItem) => typeof(gameboardItem) ==='number');
     if (filteredArray.length===0){alert('The game is over - no winners this time!');
@@ -133,6 +124,16 @@ while (gameOver===false) {
     {
        firstPlayerObject.currentPlayerChoice = prompt(`${firstPlayerObject.name}, enter a value between 0 and 8`);
 
+
+
+
+
+
+
+
+
+
+       
     //To stop prompt asking for number even when all elements have been filled with Xs and 0s
     checkIfNumber();
     firstPlayerObject.currentPlayerChoice*=1;
@@ -254,11 +255,4 @@ return {winner};
 
 }
 
-
-// let  currentGame = playGame();
-// console.log({currentGame});
-
-
-
-
-
+// playGame();
