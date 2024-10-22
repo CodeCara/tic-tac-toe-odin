@@ -17,25 +17,7 @@ let displayController = function(){
     const resetButton = document.querySelector('.reset-button');
     const player1NameSelect = document.querySelector('.player1');
     const player2NameSelect = document.querySelector('.player2');
-    const square0= document.getElementById('square-0');
-    const square1= document.getElementById('square-1');
-    const square2= document.getElementById('square-2');
-    const square3= document.getElementById('square-3');
-    const square4= document.getElementById('square-4');
-    const square5= document.getElementById('square-5');
-    const square6= document.getElementById('square-6');
-    const square7= document.getElementById('square-7');
-    const square8= document.getElementById('square-8');
-
-    let square0Content= square0.innerText;
-    let square1Content= square1.innerText;
-    let square2Content= square2.innerText;
-    let square3Content= square3.innerText;
-    let square4Content= square4.innerText;
-    let square5Content= square5.innerText;
-    let square6Content= square6.innerText;
-    let square7Content= square7.innerText;
-    let square8Content= square8.innerText;
+   
 
 
     let firstPlayerName = '';
@@ -89,15 +71,16 @@ console.log({displayController});
 
 
 // ******GAMEBOARD FUNCTION******
-let gameboard = function (){
-    let x=5;
-    let array = new Array(9);
+let createGameboard = function (){
+
+    let gameboard = new Array(9);
+
     //empty array elements upon which Xs or 0s can be generated
-  return { array, x};
+  return { gameboard};
   
 
 } ();
-console.log({gameboard});
+console.log(gameboard);
 
 
 for (let i= 0; i < gameboard.length ; i++)
@@ -177,16 +160,16 @@ console.log(firstPlayerName.currentPlayerChoice);
     console.log(firstPlayerObject);
 
 
-
-if (gameboard[firstPlayerObject.currentPlayerChoice]==='X' || gameboard[firstPlayerObject.currentPlayerChoice]==='0')
-    {   
+// ******************************
+// if (gameboard[firstPlayerObject.currentPlayerChoice]==='X' || gameboard[firstPlayerObject.currentPlayerChoice]==='0')
+//     {   
     
-        // firstPlayerObject.currentPlayerChoice = prompt(`${firstPlayerObject.name}, that number has already been selected, please select another number`)
+//         // firstPlayerObject.currentPlayerChoice = prompt(`${firstPlayerObject.name}, that number has already been selected, please select another number`)
     
-    checkIfNumber();
-    firstPlayerObject.currentPlayerChoice*=1;
-    }
-    
+//     checkIfNumber();
+//     firstPlayerObject.currentPlayerChoice*=1;
+//     }
+//    ********************************** 
     // if (firstPlayerObject.currentPlayerChoice<0 || firstPlayerObject.currentPlayerChoice>8)
     // { 
     
@@ -295,4 +278,4 @@ console.log(gameOver);
 }
 
 console.log({displayController});
-// playGame();
+playGame();

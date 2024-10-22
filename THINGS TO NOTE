@@ -6,3 +6,12 @@ should be playing a computer rather than a person, i.e. random choice needs to b
  check if checkIfNumber has been used in too many places?  (unecessarily)
 
  scoreboad not centered, jumped due to widerning of scoreboard - fix with positioning
+
+ 19/10....names in input fields are being returned to display controller obj correctly....need to feed these values through to other functions etc.
+
+ 20/10...event.target.id returning an obj?
+
+
+ move aquareclicked from display into first player object??????????
+
+ how to get squareClicked into diaplyControl?  compare to captureNameInputs
