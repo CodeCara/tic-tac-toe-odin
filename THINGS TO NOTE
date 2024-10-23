@@ -14,4 +14,9 @@ should be playing a computer rather than a person, i.e. random choice needs to b
 
  move aquareclicked from display into first player object??????????
 
- how to get squareClicked into diaplyControl?  compare to captureNameInputs
+ can't change players in get arraynumfromclick functions
+
+
+ //dynamic values and getting thing
+
+ //first X doesnt appear unless cliked twice

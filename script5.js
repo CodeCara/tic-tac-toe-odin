@@ -13,7 +13,9 @@ let createGameboard = function (){
   
 
 } ();
-console.log(createGameboard.gameboard[1]);
+
+console.log(createGameboard.gameboard);
+console.log({createGameboard});
 
 
 // Gameboard function IIFE, called once creates gameboard array
@@ -69,17 +71,22 @@ let displayController = function(){
     let firstPlayerName = '';
     let secondPlayerName = '';
     let squareClicked = '';
-    let currentPlayer=firstPlayerName;
+    //change name of dynamicurrplayer as reqused in getArrayFunc??
+    let currentPlayer='';
 
+    //HOW IS DYNAMIC CURRENT PLAYERS BEING CL'd CORRECTLY BELOW?!!!!!!!!
 
     const boardContainer=document.querySelector('.board-container');
 
 
     let getArrayNumberFromClick = function (event){
+let dynamicCurrentPlayer=displayController.currentPlayer;
+console.log(dynamicCurrentPlayer);
 
-    displayController.currentPLayer = firstPlayerName;
-    
-    if(event.target.id==="square-0"){displayController.squareClicked=0}
+   
+
+
+    if(event.target.id==="square-0"){displayController.squareClicked=0} 
     else if(event.target.id==="square-1"){displayController.squareClicked=1}
     else if(event.target.id==="square-2"){displayController.squareClicked=2}
     else if(event.target.id==="square-3"){displayController.squareClicked=3}
@@ -88,19 +95,26 @@ let displayController = function(){
     else if(event.target.id==="square-6"){displayController.squareClicked=6}
     else if(event.target.id==="square-7"){displayController.squareClicked=7}
     else if(event.target.id==="square-8"){displayController.squareClicked=8}   
-    // displayController.squareClicked=selectedSquare;
 
-// if (displayController.currentPlayer === firstPlayerName && displayController.squareClicked ===0)
-//     {square0Content='X'; displayController.currentPlayer=secondPlayerName;
-// console.log(square0Content);
+    if (dynamicCurrentPlayer === displayController.firstPlayerName) {event.target.innerText='X'; createGameboard.gameboard[displayController.squareClicked]='X';}
+    else {event.target.innerText='0'; createGameboard.gameboard[displayController.squareClicked]='0';}
 
-//SQUARE0CONTENT DOESNT WOTK, SQUARE0.INNERTEXT DOES
+//Tertiary structure/expression
+// dynamicCurrentPlayer = dynamicCurrentPlayer === displayController.firstPlayerName?
+//  dynamicCurrentPlayer=displayController.secondPlayerName: dynamicCurrentPlayer = displayController.firstPlayerName; 
 
-if (displayController.currentPlayer ===firstPlayerName) {event.target.innerText='X'}
-else {event.target.innerText='0'}
+dynamicCurrentPlayer = dynamicCurrentPlayer=== displayController.firstPlayerName?
+(dynamicCurrentPlayer = displayController.secondPlayerName) && (displayController.currentPlayer=displayController.secondPlayerName):
+ (dynamicCurrentPlayer = displayController.firstPlayerName) && (displayController.currentPlayer=displayController.firstPlayerName); 
 
-    
 
+console.log(dynamicCurrentPlayer);
+
+console.log(createGameboard.gameboard);
+
+  //Same as tertiary above but in long form  
+// if (dynamicCurrentPlayer===displayController.firstPlayerName) {dynamicCurrentPlayer=displayController.secondPlayerName; console.log(dynamicCurrentPlayer);}
+// else {dynamicCurrentPlayer=displayController.firstPlayerName; console.log(dynamicCurrentPlayer);}
 
 
 
@@ -116,18 +130,21 @@ else {event.target.innerText='0'}
 // if (currentPlayer===secondPlayerName){currentPlayer=firstPlayerName}
 // else (currentPlayer=secondPlayerName);
 
-
        displayController.firstPlayerName= firstPlayerName;
+       displayController.currentPlayer=firstPlayerName;
+
        displayController.secondPlayerName= secondPlayerName;
        displayController.scoreboardPlayer1Name.innerText = firstPlayerName;
        displayController.scoreboardPlayer2Name.innerText = secondPlayerName;
+       //make firstPlayer default currentPlayer iniitially
+       displayController.dynamicCurrentPlayer=firstPlayerName;
        let firstPlayerObject = createPlayerObject(displayController.firstPlayerName);
        let secondPlayerObject = createPlayerObject(displayController.secondPlayerName);
 console.log(firstPlayerObject);
 console.log(secondPlayerObject);
        console.log(`${firstPlayerName}, select a square`);
+    //    console.log(displayController.dynamicCurrentPlayer);
 
-console.log(currentPlayer);
 // let test = getArrayNumberFromClick();
 // console.log({test});
 
@@ -140,7 +157,6 @@ console.log(currentPlayer);
 
 return {firstPlayerName, 
         secondPlayerName, 
-        currentPlayer,
         square0Content, 
         square1Content, 
         square2Content, 
@@ -155,9 +171,11 @@ return {firstPlayerName,
         scoreboardPlayer2Name, 
         player1Score, 
         player2Score,
+        currentPlayer,
     };
 
         }();
+// displayController.dynamicCurrentPlayer=displayController.secondPlayerName;
 
 console.log({displayController});
 console.log(displayController.squareClicked);
@@ -182,10 +200,25 @@ let playerChoice;
 console.log(firstPlayerObject);
 console.log(secondPlayerObject);
 
+
+while (gameOver===false) {
+    if ((createGameboard.gameboard[0]==='X' && createGameboard.gameboard[1]==='X' && createGameboard.gameboard[2]==='X') ||
+        (createGameboard.gameboard[3]==='X' && createGameboard.gameboard[4]==='X' && createGameboard.gameboard[5]==='X') ||
+        (createGameboard.gameboard[6]==='X' && createGameboard.gameboard[7]==='X' && createGameboard.gameboard[8]==='X') ||   
+        (createGameboard.gameboard[0]==='X' && createGameboard.gameboard[3]==='X' && createGameboard.gameboard[6]==='X') ||
+        (createGameboard.gameboard[1]==='X' && createGameboard.gameboard[4]==='X' && createGameboard.gameboard[7]==='X') ||
+        (createGameboard.gameboard[2]==='X' && createGameboard.gameboard[5]==='X' && createGameboard.gameboard[8]==='X') ||
+        (createGameboard.gameboard[0]==='X' && createGameboard.gameboard[4]==='X' && createGameboard.gameboard[8]==='X') ||
+        (createGameboard.gameboard[6]==='X' && createGameboard.gameboard[4]==='X' && createGameboard.gameboard[2]==='X'))
+        {console.log(`first wins`);
+            gameOver===true;
+        }
+    }
+
+
 return {gameOver, firstPlayerName, secondPlayerName}
 
 }
-playGame();
 
 
 // ******CHECK CHECKIFNUMBER FOR DISPLAY FUNCTION******
@@ -203,7 +236,11 @@ playGame();
 //     }
    
 
-// while (gameOver===false) {
+
+
+        // playGame();
+
+
 
 
 //     {
