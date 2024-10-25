@@ -39,8 +39,12 @@ let displayController = function(){
     const player2NameSelect = document.querySelector('.player2');
    const scoreboardPlayer1Name = document.querySelector('.scoreboard-player-1');
    const scoreboardPlayer2Name = document.querySelector('.scoreboard-player-2');
+   const player1Score = document.querySelector('.player1-score');
+   const playersScore = document.querySelector('.player2-score');
    let player1Score = 0;
    let player2Score = 0 ;
+   let winner =' ';
+
 
    
     const square0= document.getElementById('square-0');
@@ -55,26 +59,13 @@ let displayController = function(){
 
     // square0.innerText="";
 
-    let square0Content= square0.innerText;
-    let square1Content= square1.innerText;
-    let square2Content= square2.innerText;
-    let square3Content= square3.innerText;
-    let square4Content= square4.innerText;
-    let square5Content= square5.innerText;
-    let square6Content= square6.innerText;
-    let square7Content= square7.innerText;
-    let square8Content= square8.innerText;
-
-
-
+ 
 
     let firstPlayerName = '';
     let secondPlayerName = '';
     let squareClicked = '';
-    //change name of dynamicurrplayer as reqused in getArrayFunc??
     let currentPlayer='';
 
-    //HOW IS DYNAMIC CURRENT PLAYERS BEING CL'd CORRECTLY BELOW?!!!!!!!!
 
     const boardContainer=document.querySelector('.board-container');
 
@@ -82,10 +73,9 @@ let displayController = function(){
     let getArrayNumberFromClick = function (event){
 let dynamicCurrentPlayer=displayController.currentPlayer;
 console.log(dynamicCurrentPlayer);
+let filteredArray = createGameboard.gameboard.filter((gameboardItem) => typeof(gameboardItem) ==='number');
 
    
-
-
     if(event.target.id==="square-0"){displayController.squareClicked=0} 
     else if(event.target.id==="square-1"){displayController.squareClicked=1}
     else if(event.target.id==="square-2"){displayController.squareClicked=2}
@@ -99,36 +89,69 @@ console.log(dynamicCurrentPlayer);
     if (dynamicCurrentPlayer === displayController.firstPlayerName) {event.target.innerText='X'; createGameboard.gameboard[displayController.squareClicked]='X';}
     else {event.target.innerText='0'; createGameboard.gameboard[displayController.squareClicked]='0';}
 
+    // let checkForFirstPlayerWin = function(){ 
+        // while (gameOver===false) {
+            if ((createGameboard.gameboard[0]==='X' && createGameboard.gameboard[1]==='X' && createGameboard.gameboard[2]==='X') ||
+                (createGameboard.gameboard[3]==='X' && createGameboard.gameboard[4]==='X' && createGameboard.gameboard[5]==='X') ||
+                (createGameboard.gameboard[6]==='X' && createGameboard.gameboard[7]==='X' && createGameboard.gameboard[8]==='X') ||   
+                (createGameboard.gameboard[0]==='X' && createGameboard.gameboard[3]==='X' && createGameboard.gameboard[6]==='X') ||
+                (createGameboard.gameboard[1]==='X' && createGameboard.gameboard[4]==='X' && createGameboard.gameboard[7]==='X') ||
+                (createGameboard.gameboard[2]==='X' && createGameboard.gameboard[5]==='X' && createGameboard.gameboard[8]==='X') ||
+                (createGameboard.gameboard[0]==='X' && createGameboard.gameboard[4]==='X' && createGameboard.gameboard[8]==='X') ||
+                (createGameboard.gameboard[6]==='X' && createGameboard.gameboard[4]==='X' && createGameboard.gameboard[2]==='X'))
+                {console.log(`${displayController.firstPlayerName} wins`);
+                displayController.winner=`${displayController.firstPlayerName}`;
+                    gameOver=true;}
+  
+                   if 
+                        ((createGameboard.gameboard[0]==='0' && createGameboard.gameboard[1]==='0' && createGameboard.gameboard[2]==='0') ||
+                        (createGameboard.gameboard[3]==='0' && createGameboard.gameboard[4]==='0' && createGameboard.gameboard[5]==='0') ||
+                        (createGameboard.gameboard[6]==='0' && createGameboard.gameboard[7]==='0' && createGameboard.gameboard[8]==='0') ||
+                        (createGameboard.gameboard[0]==='0' && createGameboard.gameboard[3]==='0' && createGameboard.gameboard[6]==='0') ||
+                        (createGameboard.gameboard[1]==='0' && createGameboard.gameboard[4]==='0' && createGameboard.gameboard[7]==='0') ||
+                        (createGameboard.gameboard[2]==='0' && createGameboard.gameboard[5]==='0' && createGameboard.gameboard[8]==='0') ||
+                        (createGameboard.gameboard[0]==='0' && createGameboard.gameboard[4]==='0' && createGameboard.gameboard[8]==='0') ||
+                        (createGameboard.gameboard[6]==='0' && createGameboard.gameboard[4]==='0' && createGameboard.gameboard[2]==='0'))
+                        {console.log(`${displayController.secondPlayerName} wins`);
+                        displayController.winner=`${displayController.secondPlayerName}`;
+                        gameOver=true;  
+
+                    }
+                    
+                    //No-win situation
+                    if 
+                    (filteredArray.length===1 && displayController.winner===' '){console.log('The game is over - no winners this time!');
+                    displayController.winner='No winner';
+                    gameOver=true;
+                    };
+                   
+                                                                   
+
 //Tertiary structure/expression
 // dynamicCurrentPlayer = dynamicCurrentPlayer === displayController.firstPlayerName?
 //  dynamicCurrentPlayer=displayController.secondPlayerName: dynamicCurrentPlayer = displayController.firstPlayerName; 
-
+    
 dynamicCurrentPlayer = dynamicCurrentPlayer=== displayController.firstPlayerName?
 (dynamicCurrentPlayer = displayController.secondPlayerName) && (displayController.currentPlayer=displayController.secondPlayerName):
  (dynamicCurrentPlayer = displayController.firstPlayerName) && (displayController.currentPlayer=displayController.firstPlayerName); 
-
-
-console.log(dynamicCurrentPlayer);
+    
+}
 
 console.log(createGameboard.gameboard);
 
-  //Same as tertiary above but in long form  
-// if (dynamicCurrentPlayer===displayController.firstPlayerName) {dynamicCurrentPlayer=displayController.secondPlayerName; console.log(dynamicCurrentPlayer);}
-// else {dynamicCurrentPlayer=displayController.firstPlayerName; console.log(dynamicCurrentPlayer);}
 
 
 
-    }
+
+    
         boardContainer.addEventListener('click', getArrayNumberFromClick);
 
 
     let captureNameInputs = function() {
         let firstPlayerName = player1NameSelect.value;
        let secondPlayerName = player2NameSelect.value; 
- 
-       //as defaults to first before click
-// if (currentPlayer===secondPlayerName){currentPlayer=firstPlayerName}
-// else (currentPlayer=secondPlayerName);
+       
+
 
        displayController.firstPlayerName= firstPlayerName;
        displayController.currentPlayer=firstPlayerName;
@@ -143,10 +166,7 @@ console.log(createGameboard.gameboard);
 console.log(firstPlayerObject);
 console.log(secondPlayerObject);
        console.log(`${firstPlayerName}, select a square`);
-    //    console.log(displayController.dynamicCurrentPlayer);
 
-// let test = getArrayNumberFromClick();
-// console.log({test});
 
     //    playGame();
      
@@ -156,34 +176,23 @@ console.log(secondPlayerObject);
          console.log({captureNameInputs});
 
 return {firstPlayerName, 
-        secondPlayerName, 
-        square0Content, 
-        square1Content, 
-        square2Content, 
-        square3Content, 
-        square4Content, 
-        square5Content, 
-        square6Content, 
-        square7Content, 
-        square8Content, 
+        secondPlayerName,  
         squareClicked, 
         scoreboardPlayer1Name, 
         scoreboardPlayer2Name, 
         player1Score, 
         player2Score,
         currentPlayer,
-    };
+        winner,
+    }
 
-        }();
-// displayController.dynamicCurrentPlayer=displayController.secondPlayerName;
+    }    ();
 
 console.log({displayController});
-console.log(displayController.squareClicked);
 
         // ******PLAYGAME FUNCTION******
 let playGame = function () {
     let gameOver = false;
-    let winner;
    
 
 
@@ -199,179 +208,15 @@ let secondPlayerName = secondPlayerObject.name;
 let playerChoice;
 console.log(firstPlayerObject);
 console.log(secondPlayerObject);
+console.log('playgame running');
+console.log(gameOver);
 
-
-while (gameOver===false) {
-    if ((createGameboard.gameboard[0]==='X' && createGameboard.gameboard[1]==='X' && createGameboard.gameboard[2]==='X') ||
-        (createGameboard.gameboard[3]==='X' && createGameboard.gameboard[4]==='X' && createGameboard.gameboard[5]==='X') ||
-        (createGameboard.gameboard[6]==='X' && createGameboard.gameboard[7]==='X' && createGameboard.gameboard[8]==='X') ||   
-        (createGameboard.gameboard[0]==='X' && createGameboard.gameboard[3]==='X' && createGameboard.gameboard[6]==='X') ||
-        (createGameboard.gameboard[1]==='X' && createGameboard.gameboard[4]==='X' && createGameboard.gameboard[7]==='X') ||
-        (createGameboard.gameboard[2]==='X' && createGameboard.gameboard[5]==='X' && createGameboard.gameboard[8]==='X') ||
-        (createGameboard.gameboard[0]==='X' && createGameboard.gameboard[4]==='X' && createGameboard.gameboard[8]==='X') ||
-        (createGameboard.gameboard[6]==='X' && createGameboard.gameboard[4]==='X' && createGameboard.gameboard[2]==='X'))
-        {console.log(`first wins`);
-            gameOver===true;
-        }
-    }
-
-
-return {gameOver, firstPlayerName, secondPlayerName}
+return {gameOver, firstPlayerName, secondPlayerName};
 
 }
-
-
-// ******CHECK CHECKIFNUMBER FOR DISPLAY FUNCTION******
-// const checkIfNumber = function() {
-//     let filteredArray = gameboard.filter((gameboardItem) => typeof(gameboardItem) ==='number');
-//     if (filteredArray.length===0){alert('The game is over - no winners this time!');
-//     console.log('The game is over - no winners this time!');
-//     winner==="No winner this round"
-//     console.log(firstPlayerObject);
-//     console.log(secondPlayerObject);
-//         gameOver===true;
-
-//     }
-
-//     }
-   
-
-
-
-        // playGame();
+playGame();
 
 
 
 
-//     {
-//         // firstPlayerObject.currentPlayerChoice = prompt(`${firstPlayerObject.name}, enter a value between 0 and 8`);
-// // alert(`${firstPlayerObject.name}, select a square`);
-// firstPlayerName.currentPlayerChoice=displayController.squareClicked;
-// console.log(firstPlayerName.currentPlayerChoice);
-//     //    firstPlayerObject.currentPlayerChoice = prompt(`${firstPlayerObject.name}, enter a value between 0 and 8`);
-//             // firstPlayerObject.currentPlayerChoice
 
-    
-       
-//     //To stop prompt asking for number even when all elements have been filled with Xs and 0s
-//     checkIfNumber();
-//     // firstPlayerObject.currentPlayerChoice*=1;
-//     console.log(firstPlayerObject);
-
-
-// // ******************************
-// // if (gameboard[firstPlayerObject.currentPlayerChoice]==='X' || gameboard[firstPlayerObject.currentPlayerChoice]==='0')
-// //     {   
-    
-// //         // firstPlayerObject.currentPlayerChoice = prompt(`${firstPlayerObject.name}, that number has already been selected, please select another number`)
-    
-// //     checkIfNumber();
-// //     firstPlayerObject.currentPlayerChoice*=1;
-// //     }
-// //    ********************************** 
-//     // if (firstPlayerObject.currentPlayerChoice<0 || firstPlayerObject.currentPlayerChoice>8)
-//     // { 
-    
-//     //     // firstPlayerObject.currentPlayerChoice = prompt(`${firstPlayerObject.currentPlayerChoice}, you may only enter a value between 0 and 8`);
-//     //     checkIfNumber();
-//     //     firstPlayerObject.currentPlayerChoice*=1;
-//     // }
-    
-    
-//     if (gameboard.includes(firstPlayerObject.currentPlayerChoice)) {
-//         gameboard[firstPlayerObject.currentPlayerChoice]='X';
-//         console.log(gameboard);
-    
-//     }
-    
-
-//         console.log(gameboard);
-    
-//     if ((gameboard[0]==='X' && gameboard[1]==='X' && gameboard[2]==='X') ||
-//     (gameboard[3]==='X' && gameboard[4]==='X' && gameboard[5]==='X') ||
-//     (gameboard[6]==='X' && gameboard[7]==='X' && gameboard[8]==='X') ||   
-//     (gameboard[0]==='X' && gameboard[3]==='X' && gameboard[6]==='X') ||
-//     (gameboard[1]==='X' && gameboard[4]==='X' && gameboard[7]==='X') ||
-//     (gameboard[2]==='X' && gameboard[5]==='X' && gameboard[8]==='X') ||
-//     (gameboard[0]==='X' && gameboard[4]==='X' && gameboard[8]==='X') ||
-//     (gameboard[6]==='X' && gameboard[4]==='X' && gameboard[2]==='X'))
-//     {
-//         console.log(`${firstPlayerObject.name} wins!  GAME OVER!`);
-//         firstPlayerObject.playerWins = true;
-//         winner=firstPlayerName;
-//         firstPlayerObject.score=1;
-//         secondPlayerObject.score=0;
-//         console.log(firstPlayerObject);
-//         console.log(secondPlayerObject);
-//         console.log(firstPlayerObject.currentPlayerChoice);
-//         gameOver=true;
-        
-//     }
-
-
-
-
-  
-//     if (gameOver===false)
-//     {   checkIfNumber();
-    
-//         // secondPlayerObject.currentPlayerChoice= prompt(`${secondPlayerName}, enter a value between 0 and 8`);}
-//         // secondPlayerObject.currentPlayerChoice= alert(`${secondPlayerName}, pick a square`);}
-//         secondPlayerObject.currentPlayerChoice=displayController.squareClicked;}
-
-//     else {alert(`${firstPlayerName} won!`)};
-//     secondPlayerObject.currentPlayerChoice*=1;
-//     if (gameboard[secondPlayerObject.currentPlayerChoice]==="X" || gameboard[secondPlayerObject.currentPlayerChoice]==="0")
-//         {   checkIfNumber();
-    
-//             secondPlayerObject.currentPlayerChoice = prompt(`${secondPlayerName}, that number has already been selected, please select another number`)}
-    
-//     if (secondPlayerObject.currentPlayerChoice<0 || secondPlayerObject.currentPlayerChoice>8)
-//         {   checkIfNumber();
-    
-//             secondPlayerObject.currentPlayerChoice = prompt(`${secondPlayerName}, you may only enter a value between 0 and 8`);}
-    
-//     if (gameboard.includes(secondPlayerObject.currentPlayerChoice)) {
-//         gameboard[secondPlayerObject.currentPlayerChoice]='0';}
-
-
-
-//         console.log(gameboard);
-// console.log(gameOver);
-
-
-//     if 
-//     ((gameboard[0]==='0' && gameboard[1]==='0' && gameboard[2]==='0') ||
-//     (gameboard[3]==='0' && gameboard[4]==='0' && gameboard[5]==='0') ||
-//     (gameboard[6]==='0' && gameboard[7]==='0' && gameboard[8]==='0') ||
-//     (gameboard[0]==='0' && gameboard[3]==='0' && gameboard[6]==='0') ||
-//     (gameboard[1]==='0' && gameboard[4]==='0' && gameboard[7]==='0') ||
-//     (gameboard[2]==='0' && gameboard[5]==='0' && gameboard[8]==='0') ||
-//     (gameboard[0]==='0' && gameboard[4]==='0' && gameboard[8]==='0') ||
-//     (gameboard[6]==='0' && gameboard[4]==='0' && gameboard[2]==='0'))
-//     {
-//         console.log(`${secondPlayerName} wins!.  GAME OVER!`);
-//         //access gamover variable through object!!!!!!!!!!!!!!!!!!!!!!
-//         gameOver=true;
-//         //connect vari below to object!
-//         secondPlayerObject.playerWins=true;
-//         winner=secondPlayerName;
-
-//         secondPlayerObject.score=1;
-//         firstPlayerObject.score=0;
-
-//         console.log(firstPlayerObject);
-//         console.log(secondPlayerObject);
-//         prompt(`${secondPlayerName} 2 wins!`)
-
-
-//        }
-
-
-//     }
-
-   
-// }
-
-
-// } 
