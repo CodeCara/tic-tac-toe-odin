@@ -29,6 +29,28 @@ let createPlayerObject = function(playerName) {
         return {name, currentPlayerChoice, score, playerWins}
     }
 
+
+    let playGame = function () {
+        let gameOver = false;
+        
+    
+    
+    
+  
+    
+    
+    let playerChoice;
+    // console.log(firstPlayerObject);
+    // console.log(secondPlayerObject);
+    console.log('playgame running');
+    console.log(gameOver);
+    console.log({captureNameInputs});
+    return {gameOver};
+    
+    }
+
+
+
     // ******DISPLAY CONTROLLER FUNCTION******
 
 let displayController = function(){
@@ -39,10 +61,10 @@ let displayController = function(){
     const player2NameSelect = document.querySelector('.player2');
    const scoreboardPlayer1Name = document.querySelector('.scoreboard-player-1');
    const scoreboardPlayer2Name = document.querySelector('.scoreboard-player-2');
-   const player1Score = document.querySelector('.player1-score');
-   const playersScore = document.querySelector('.player2-score');
+   const player1ScoreEl = document.querySelector('.player1-score');
    let player1Score = 0;
-   let player2Score = 0 ;
+   const player2ScoreEl = document.querySelector('.player2-score');
+   let player2Score = 0;
    let winner =' ';
 
 
@@ -68,6 +90,48 @@ let displayController = function(){
 
 
     const boardContainer=document.querySelector('.board-container');
+
+    let captureNameInputs = function() {
+        let firstPlayerName = player1NameSelect.value;
+       let secondPlayerName = player2NameSelect.value; 
+       
+
+
+       displayController.firstPlayerName= firstPlayerName;
+       displayController.currentPlayer=firstPlayerName;
+
+       displayController.secondPlayerName= secondPlayerName;
+       displayController.scoreboardPlayer1Name.innerText = firstPlayerName;
+       displayController.scoreboardPlayer2Name.innerText = secondPlayerName;
+       //make firstPlayer default currentPlayer iniitially
+       displayController.dynamicCurrentPlayer=firstPlayerName;
+
+       let firstPlayerObject = createPlayerObject(displayController.firstPlayerName);
+       let secondPlayerObject = createPlayerObject(displayController.secondPlayerName);
+       console.log(secondPlayerObject);
+
+
+
+
+
+
+
+
+
+// console.log(firstPlayerObject);
+// console.log(secondPlayerObject);
+       console.log(`${firstPlayerName}, select a square`);
+       return {firstPlayerObject, secondPlayerObject, secondPlayerName}
+       playGame();
+
+
+    //    playGame();
+     
+         }
+
+         enterButton.addEventListener('click', captureNameInputs);
+         console.log({captureNameInputs});
+
 
 
     let getArrayNumberFromClick = function (event){
@@ -101,6 +165,10 @@ let filteredArray = createGameboard.gameboard.filter((gameboardItem) => typeof(g
                 (createGameboard.gameboard[6]==='X' && createGameboard.gameboard[4]==='X' && createGameboard.gameboard[2]==='X'))
                 {console.log(`${displayController.firstPlayerName} wins`);
                 displayController.winner=`${displayController.firstPlayerName}`;
+                player1Score+=1;
+                console.log(captureNameInputs.firstPlayerObject);    
+                console.log(createPlayerObject.firstPlayerObject);
+                player1ScoreEl.innerText=player1Score;
                     gameOver=true;}
   
                    if 
@@ -114,6 +182,11 @@ let filteredArray = createGameboard.gameboard.filter((gameboardItem) => typeof(g
                         (createGameboard.gameboard[6]==='0' && createGameboard.gameboard[4]==='0' && createGameboard.gameboard[2]==='0'))
                         {console.log(`${displayController.secondPlayerName} wins`);
                         displayController.winner=`${displayController.secondPlayerName}`;
+                        player2Score+=1;
+                        // secondPlayerObject.score=player2Score;
+                        console.log(secondPlayerObject.name);
+                        player2ScoreEl.innerText=player2Score;
+
                         gameOver=true;  
 
                     }
@@ -147,33 +220,7 @@ console.log(createGameboard.gameboard);
         boardContainer.addEventListener('click', getArrayNumberFromClick);
 
 
-    let captureNameInputs = function() {
-        let firstPlayerName = player1NameSelect.value;
-       let secondPlayerName = player2NameSelect.value; 
-       
 
-
-       displayController.firstPlayerName= firstPlayerName;
-       displayController.currentPlayer=firstPlayerName;
-
-       displayController.secondPlayerName= secondPlayerName;
-       displayController.scoreboardPlayer1Name.innerText = firstPlayerName;
-       displayController.scoreboardPlayer2Name.innerText = secondPlayerName;
-       //make firstPlayer default currentPlayer iniitially
-       displayController.dynamicCurrentPlayer=firstPlayerName;
-       let firstPlayerObject = createPlayerObject(displayController.firstPlayerName);
-       let secondPlayerObject = createPlayerObject(displayController.secondPlayerName);
-console.log(firstPlayerObject);
-console.log(secondPlayerObject);
-       console.log(`${firstPlayerName}, select a square`);
-
-
-    //    playGame();
-     
-         }
-
-         enterButton.addEventListener('click', captureNameInputs);
-         console.log({captureNameInputs});
 
 return {firstPlayerName, 
         secondPlayerName,  
@@ -190,31 +237,7 @@ return {firstPlayerName,
 
 console.log({displayController});
 
-        // ******PLAYGAME FUNCTION******
-let playGame = function () {
-    let gameOver = false;
-   
 
-
-
-    let firstPlayerObject = createPlayerObject(displayController.firstPlayerName);
-    let secondPlayerObject = createPlayerObject(displayController.secondPlayerName);
- 
-let firstPlayerName = firstPlayerObject.name;
-
-let secondPlayerName = secondPlayerObject.name;
-
-
-let playerChoice;
-console.log(firstPlayerObject);
-console.log(secondPlayerObject);
-console.log('playgame running');
-console.log(gameOver);
-
-return {gameOver, firstPlayerName, secondPlayerName};
-
-}
-playGame();
 
 
 

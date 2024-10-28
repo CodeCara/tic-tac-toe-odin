@@ -10,12 +10,6 @@ let displayController = function(){
     let player2NameSelect = document.querySelector('.player2');
  
 
-
-
-
-
-
-    
     let captureNameInputs = function () {
         
        
@@ -255,7 +249,7 @@ return {winner};
 }
 
 
-// let  currentGame = playGame();
+playGame();
 // console.log({currentGame});
 
 

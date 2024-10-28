@@ -1,24 +1,16 @@
-WHAT OBJECTS NEEDS TO BE RETURNED FROM THE FACTORIES?
+const gameboard = createGameboard() 
 
-should be playing a computer rather than a person, i.e. random choice needs to be implemented
- and distinguish from each other to read in longer name variables
+// Example usage:
 
- check if checkIfNumber has been used in too many places?  (unecessarily)
+// empty board
+gameboard.board // ["", "", "", "", "", "", "", "", ""]
 
- scoreboad not centered, jumped due to widerning of scoreboard - fix with positioning
+// set a square
+gameboard.set(0, "X")
 
- 19/10....names in input fields are being returned to display controller obj correctly....need to feed these values through to other functions etc.
+// get the value of squares
+gameboard.get(0) // "X"
+gameboard.board //  ["X", "", "", "", "", "", "", "", ""]
 
- 20/10...event.target.id returning an obj?
-
-
- move aquareclicked from display into first player object??????????
-
- can't change players in get arraynumfromclick functions
-
-
- //dynamic values and getting thing
-
- //first X doesnt appear unless cliked twice
-
- trying to clal checkForFirstPlayerWing in playgame...not returning obj atm
+// reset
+gameboard.reset() // ["", "", "", "", "", "", "", "", ""]
