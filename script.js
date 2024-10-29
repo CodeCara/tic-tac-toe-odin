@@ -181,7 +181,14 @@ console.log(gameboard.currentPlayer);
     
 
 
-    if (gameboard.currentPlayer==='Player One') {gameboard.board[gameboard.squareClicked]='X'}
+    if (gameboard.board[gameboard.squareClicked]==='X' || gameboard.board[gameboard.squareClicked]==='0')
+        {alert('That square is taken, please select another')
+    gameboard.currentPlayer = gameboard.currentPlayer==='Player One'? gameboard.currentPlayer='Player Two': gameboard.currentPlayer='Player One';
+
+
+        } 
+
+    else if (gameboard.currentPlayer==='Player One') {gameboard.board[gameboard.squareClicked]='X'}
     else {gameboard.board[gameboard.squareClicked]='0'}
 square0.innerText=gameboard.board[0];
 square1.innerText=gameboard.board[1];
