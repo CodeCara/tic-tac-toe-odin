@@ -17,6 +17,18 @@ let gameboard = function (){
     //Board is being reset correctly (tested)
     let resetBoard = function (){
         board = [...newboard];
+        gameboard.board=board;
+        displayController.square0.innerText=gameboard.board[0];
+        displayController.square1.innerText=gameboard.board[1];
+        displayController.square2.innerText=gameboard.board[2];
+        displayController.square3.innerText=gameboard.board[3];
+        displayController.square4.innerText=gameboard.board[4];
+        displayController.square5.innerText=gameboard.board[5];
+        displayController.square6.innerText=gameboard.board[6];
+        displayController.square7.innerText=gameboard.board[7];
+        displayController.square8.innerText=gameboard.board[8]; 
+        displayController.messageBox.style.visibility='hidden';
+        return board;
     };
 
     let gameboardFull = function (board) {
@@ -93,7 +105,8 @@ const secondPlayerObject = createPlayerObject('Player Two');
         displayController.messageBox.style.visibility='visible';
         firstPlayerObject.playerWins = true;
         winner='Player One';
-        displayController.player1Score.innerText=1;
+        console.log(gameboard.board);
+
         // console.log(firstPlayerObject);
         // console.log(secondPlayerObject);
         // console.log(firstPlayerObject.currentPlayerChoice);
@@ -119,6 +132,7 @@ const secondPlayerObject = createPlayerObject('Player Two');
         winner='Player Two';
         console.log(firstPlayerObject);
         console.log(secondPlayerObject);
+        console.log(gameboard.board);
         // console.log(firstPlayerObject.currentPlayerChoice);
         gameOver=true;
         
@@ -134,6 +148,8 @@ const secondPlayerObject = createPlayerObject('Player Two');
     displayController.messageBox.innerText='No winner this time!';
     displayController.messageBox.style.visibility='visible';
     gameOver=true;
+    console.log(gameboard.board);
+
     console.log(gameOver);
 }
 
@@ -145,8 +161,6 @@ return {winner};
 
 
 let displayController = function(){
-    const enterButton = document.querySelector('.enter-button');
-    const startButton = document.querySelector('.start-button');
     const resetButton = document.querySelector('.reset-button');
     const square0= document.getElementById('square-0');
     const square1= document.getElementById('square-1');
@@ -158,8 +172,7 @@ let displayController = function(){
     const square7= document.getElementById('square-7');
     const square8= document.getElementById('square-8');
     const messageBox=document.querySelector('.message-box');
-
-    let squareClicked;
+    let squareClicked;;
 
     const boardContainer=document.querySelector('.board-container');
 
@@ -207,6 +220,8 @@ square8.innerText=gameboard.board[8];
     
         boardContainer.addEventListener('click', getNumberFromClick);
 
+        resetButton.addEventListener('click', gameboard.resetBoard);
+
 
         // player1Score.innerText=firstPlayerObject.score;
         // player2Score.innerText=secondPlayerObject.score;
@@ -223,7 +238,7 @@ square8.innerText=gameboard.board[8];
 
 
   
-    return {squareClicked, messageBox};  
+    return {squareClicked, messageBox, square0, square1, square2, square3, square4, square5, square6, square7, square8};  
 
 
         }();
