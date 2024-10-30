@@ -75,6 +75,9 @@ let playGame = function () {
 const firstPlayerObject = createPlayerObject('Player One');
 const secondPlayerObject = createPlayerObject('Player Two');
 
+console.log(gameboard.gameboardFull);
+console.log(gameOver);
+
 
 
     if ((gameboard.board[0]==='X' && gameboard.board[1]==='X' && gameboard.board[2]==='X') ||
@@ -88,7 +91,7 @@ const secondPlayerObject = createPlayerObject('Player Two');
     {
         console.log(gameboard.gameboardFull());
         displayController.messageBox.innerText='Player One wins!  GAME OVER!';
-        displayController.messageBox.style.visibility='visible';
+        displayController.messageBox.style.display='block';
         firstPlayerObject.playerWins = true;
         winner='Player One';
         console.log(gameboard.board);
@@ -113,7 +116,8 @@ const secondPlayerObject = createPlayerObject('Player Two');
         console.log(gameboard.gameboardFull());
 
         displayController.messageBox.innerText='Player Two wins!  GAME OVER!';
-        displayController.messageBox.style.visibility='visible';
+        displayController.messageBox.style.display='block';
+
         secondPlayerObject.playerWins = true;
         winner='Player Two';
         console.log(firstPlayerObject);
@@ -132,9 +136,11 @@ const secondPlayerObject = createPlayerObject('Player Two');
 
 {
     displayController.messageBox.innerText='No winner this time!';
-    displayController.messageBox.style.visibility='visible';
+    displayController.messageBox.style.display='block';
+
     gameOver=true;
     console.log(gameboard.board);
+    console.log(displayController.messageBox.parentNode);
 
     console.log(gameOver);
 }
@@ -161,6 +167,14 @@ let displayController = function(){
     let squareClicked;;
 
     const boardContainer=document.querySelector('.board-container');
+
+    const closeMessageBox = function(){
+        if (displayController.messageBox.style.display='none')
+            {displayControler.messageBox.style.display='block'}
+        else {displayController.messageBox.style.display='none'}
+    }
+
+    messageBox.addEventListener('click', closeMessageBox);
 
     const getNumberFromClick = function (event){
 console.log(gameboard.currentPlayer);
@@ -214,6 +228,8 @@ square8.innerText=gameboard.board[8];
         boardContainer.addEventListener('click', getNumberFromClick);
 
         resetButton.addEventListener('click', gameboard.resetBoard);
+
+        // messageBox.addEventListener('click', messageBox.style.display='none');
 
 
         // player1Score.innerText=firstPlayerObject.score;
