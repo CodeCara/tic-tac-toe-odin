@@ -8,15 +8,30 @@
     
 </head>
 <body>
-    <div class="message-box"></div>
+<div class="whole-page">
+    <!-- <div class="whole-page"> -->
+        <div class="message-box"></div>
 
-    <div class="whole-page">
-
-    <h1>Tic-tac-toe</h1>
+    <h1>TIC-TAC-TOE</h1>
+    <div class="text-and-player-names-container">
+        <p class="names-text">Enter player names and press PLAY to start</p>
+        
+        <div class="player-names">
+        <label for="player1name" class="player1name">Player One (X):</label>
+            <input id="player1name"></input>
+            <label for="player2name" class="player2name">Player Two (0):</label>
+        
+            <input id="player2name"></input>
+        
+        </div>
+        <div class="button-wrapper"><button class="play-button">PLAY</button></div>
  
+            
+            
+            </div>
 
 <div class="board-section-flex-container">
-    
+  <div class="board-plus-reset-container"> 
 <div class="board-container">
     <button class='board-individual-square' id ='square-0'></button>
     <button class='board-individual-square' id = 'square-1'></button>
@@ -29,23 +44,13 @@
     <button class='board-individual-square' id = 'square-8'></button>
 
 </div>
-<button class="reset-button">Reset game</button>
-<p>Enter player names and press 'enter'</p>
+<button class="reset-button">RESET</button>
+</div> 
 
-<div class="player-names">
-<label for="player1name">Player One:</label>
-    <input id="player1name"></input>
-    <label for="player2name">Player Two:</label>
-
-    <input id="player2name"></input>
-    
-    
-    
-    </div>
-    <button class="enterNames">Enter</button>
 
 <!-- </div> -->
 </div>
+<!-- </div> -->
 </div>
     <script src="script.js"></script>
 </body>

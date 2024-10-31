@@ -6,14 +6,16 @@ let gameboard = function (){
     " ", " ", " "]
     
     let newboard = [...board];
-    let currentPlayer = 'Player One';
+    // let currentPlayer = 'Player One';
+let currentPlayer;
+
     let squareClicked;
     
     const getBoard = () => board; 
     
     console.log(board);
     //Board is being reset correctly (tested)
-    let resetBoard = function (){
+    let resetBoardAndGame = function (){
         board = [...newboard];
         gameboard.board=board;
         displayController.square0.innerText=gameboard.board[0];
@@ -25,7 +27,15 @@ let gameboard = function (){
         displayController.square6.innerText=gameboard.board[6];
         displayController.square7.innerText=gameboard.board[7];
         displayController.square8.innerText=gameboard.board[8]; 
-        displayController.messageBox.style.visibility='hidden';
+        displayController.messageBox.style.display='none';
+        displayController.boardPlusReset.style.display='none';
+        displayController.playerNamesContainer.style.display='block';
+        displayController.playerOneName.value=' ';
+        displayController.playerTwoName.value=' ';
+        displayController.playerOneName.style.backgroundColor='white';
+        displayController.playerTwoName.style.backgroundColor='white';
+
+
         return board;
     };
 
@@ -40,7 +50,7 @@ let gameboard = function (){
     };
 
 
-  return {board, gameboardFull, resetBoard, getBoard, squareClicked, currentPlayer};
+  return {board, gameboardFull, resetBoardAndGame, getBoard, squareClicked, currentPlayer};
   
 
 } ();
@@ -72,11 +82,9 @@ let playGame = function () {
    
 
 
-const firstPlayerObject = createPlayerObject('Player One');
-const secondPlayerObject = createPlayerObject('Player Two');
+// const firstPlayerObject = createPlayerObject('Player One');
+// const secondPlayerObject = createPlayerObject('Player Two');
 
-console.log(gameboard.gameboardFull);
-console.log(gameOver);
 
 
 
@@ -90,9 +98,9 @@ console.log(gameOver);
     (gameboard.board[6]==='X' && gameboard.board[4]==='X' && gameboard.board[2]==='X'))
     {
         console.log(gameboard.gameboardFull());
-        displayController.messageBox.innerText='Player One wins!  GAME OVER!';
-        displayController.messageBox.style.display='block';
-        firstPlayerObject.playerWins = true;
+        displayController.messageBox.innerText=`${displayController.firstPlayerObject.name} wins!  Click anywhere to continue`;
+        displayController.messageBox.style.display='flex';
+        displayController.firstPlayerObject.playerWins = true;
         winner='Player One';
         console.log(gameboard.board);
 
@@ -115,13 +123,11 @@ console.log(gameOver);
     {
         console.log(gameboard.gameboardFull());
 
-        displayController.messageBox.innerText='Player Two wins!  GAME OVER!';
-        displayController.messageBox.style.display='block';
+        displayController.messageBox.innerText=`${displayController.secondPlayerObject.name} wins!  Click anywhere to continue`;
+        displayController.messageBox.style.display='flex';
 
-        secondPlayerObject.playerWins = true;
+        displayController.secondPlayerObject.playerWins = true;
         winner='Player Two';
-        console.log(firstPlayerObject);
-        console.log(secondPlayerObject);
         console.log(gameboard.board);
         // console.log(firstPlayerObject.currentPlayerChoice);
         gameOver=true;
@@ -135,8 +141,10 @@ console.log(gameOver);
     if (gameboard.gameboardFull()===true && gameOver===false) 
 
 {
-    displayController.messageBox.innerText='No winner this time!';
-    displayController.messageBox.style.display='block';
+    displayController.messageBox.innerText='No winner! Click anywhere to continue' ;
+
+    displayController.messageBox.style.display='flex';
+
 
     gameOver=true;
     console.log(gameboard.board);
@@ -164,17 +172,52 @@ let displayController = function(){
     const square7= document.getElementById('square-7');
     const square8= document.getElementById('square-8');
     const messageBox=document.querySelector('.message-box');
-    let squareClicked;;
+    const playButton=document.querySelector('.play-button');
+    let playerOneName = document.getElementById('player1name');
+    let playerTwoName = document.getElementById('player2name');
+    const namesInputContainer = document.querySelector('.player-names');
+    const namesText = document.querySelector('.names-text');
+    let firstPlayerObject = createPlayerObject(' ');
+    let secondPlayerObject = createPlayerObject(' ');
+    let boardPlusReset = document.querySelector('.board-plus-reset-container')
+    let playerNamesContainer = document.querySelector('.text-and-player-names-container');
+   
+    let squareClicked;
 
     const boardContainer=document.querySelector('.board-container');
 
     const closeMessageBox = function(){
-        if (displayController.messageBox.style.display='none')
-            {displayControler.messageBox.style.display='block'}
-        else {displayController.messageBox.style.display='none'}
+        console.log('bladsdfsdfdsf');
+        if (displayController.messageBox.style.display='flex')
+            {displayController.messageBox.style.display='none'}
+    //     else if (displayController.messageBox.style.display='block')
+    //    {displayController.messageBox.style.display='none'}
     }
 
+    const captureNameInputs = function(){
+        console.log(displayController.playerOneName.value);;
+        console.log(playerTwoName.value);
+        boardPlusReset.style.display='flex';
+        // playerNamesContainer.style.display='none';
+        firstPlayerObject.name=playerOneName.value;
+        secondPlayerObject.name = playerTwoName.value;
+        console.log(firstPlayerObject);
+        console.log(displayController.playerOneName.value);
+        console.log({displayController});
+        gameboard.currentPlayer=firstPlayerObject.name;
+        playerOneName.style.backgroundColor='yellow';
+        playerTwoName.style.backgroundColor='yellow';
+        // namesText.style.display='none';
+
+
+ console.log(firstPlayerObject);
+
+    }
+
+    playButton.addEventListener('click', captureNameInputs)
+
     messageBox.addEventListener('click', closeMessageBox);
+
 
     const getNumberFromClick = function (event){
 console.log(gameboard.currentPlayer);
@@ -197,12 +240,12 @@ console.log(gameboard.currentPlayer);
 
     if (gameboard.board[gameboard.squareClicked]==='X' || gameboard.board[gameboard.squareClicked]==='0')
         {alert('That square is taken, please select another')
-    gameboard.currentPlayer = gameboard.currentPlayer==='Player One'? gameboard.currentPlayer='Player Two': gameboard.currentPlayer='Player One';
+    gameboard.currentPlayer = gameboard.currentPlayer===firstPlayerObject.name? gameboard.currentPlayer=secondPlayerObject.name: gameboard.currentPlayer=firstPlayerObject.name;
 
 
         } 
 
-    else if (gameboard.currentPlayer==='Player One') {gameboard.board[gameboard.squareClicked]='X'}
+    else if (gameboard.currentPlayer===firstPlayerObject.name) {gameboard.board[gameboard.squareClicked]='X'}
     else {gameboard.board[gameboard.squareClicked]='0'}
 square0.innerText=gameboard.board[0];
 square1.innerText=gameboard.board[1];
@@ -216,7 +259,7 @@ square8.innerText=gameboard.board[8];
 
 
     console.log(gameboard.currentPlayer);
-    gameboard.currentPlayer = gameboard.currentPlayer==='Player One'? gameboard.currentPlayer='Player Two': gameboard.currentPlayer='Player One';
+    gameboard.currentPlayer = gameboard.currentPlayer===firstPlayerObject.name? gameboard.currentPlayer=secondPlayerObject.name: gameboard.currentPlayer=firstPlayerObject.name;
 
 
 
@@ -227,7 +270,7 @@ square8.innerText=gameboard.board[8];
     
         boardContainer.addEventListener('click', getNumberFromClick);
 
-        resetButton.addEventListener('click', gameboard.resetBoard);
+        resetButton.addEventListener('click', gameboard.resetBoardAndGame);
 
         // messageBox.addEventListener('click', messageBox.style.display='none');
 
@@ -247,7 +290,7 @@ square8.innerText=gameboard.board[8];
 
 
   
-    return {squareClicked, messageBox, square0, square1, square2, square3, square4, square5, square6, square7, square8};  
+    return {playerNamesContainer, boardPlusReset, firstPlayerObject, secondPlayerObject, playerOneName, playerTwoName, squareClicked, messageBox, square0, square1, square2, square3, square4, square5, square6, square7, square8};  
 
 
         }();

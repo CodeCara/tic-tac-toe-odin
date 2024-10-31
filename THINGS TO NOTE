@@ -15,4 +15,7 @@ gameboard.board //  ["X", "", "", "", "", "", "", "", ""]
 // reset
 gameboard.reset() // ["", "", "", "", "", "", "", "", ""]
 
-in tie situation, x/0 apprears AFTER alert message!!!!!!!!!!
+
+
+
+check reset GamepadButton.apply.apply.apply.alternates turns!!! messes up the logic for he second game?
