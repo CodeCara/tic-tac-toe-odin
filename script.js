@@ -143,7 +143,9 @@ let displayController = function(){
     const closeMessageBox = function(){
 
         if (displayController.messageBox.style.display='flex')
-            {displayController.messageBox.style.display='none'}
+            {displayController.messageBox.style.display='none';
+        gameboard.resetBoardAndGame();
+            }
         
     }
 
