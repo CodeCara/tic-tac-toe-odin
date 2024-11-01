@@ -31,7 +31,7 @@ margin: auto;
 padding-top: 2rem;
 padding-bottom: 2rem;
 font-size: 3.8rem;
-background-color: var(--darkGrey);}
+background-color: black;}
 /* text-shadow: -1px -1px 0 navy, 1px -1px 0 navy, 1px 1px 0 navy,
 1px 1px 0 navy;
 } */
@@ -85,7 +85,7 @@ justify-content: center;
 align-items: center;
 font-size: 3rem;
 font-weight: bold;
-color: yellow;
+color: black;
 
 }
 
@@ -107,7 +107,8 @@ align-items: center;
     align-items: center;
     height: 40rem;
 
-background-color: var(--darkGrey)}
+background-color: black;)
+}
 
 /* .whole-page h1
 {color: red;} */
@@ -183,7 +184,7 @@ background-color: black
 }
 
 .board-individual-square 
-{background-color: var(--shadeOfred);190, 5, 5
+{background-color: var(--shadeOfred);
 }
 
 .board-individual-square:hover
@@ -256,7 +257,8 @@ color: var(--darkGrey);
 
 input:hover
 {
-    background-color: rgb(245, 245, 156););
+ outline: 1px solid yellow;   
+    /* background-color: rgb(247, 247, 181);); */
 
 }
 

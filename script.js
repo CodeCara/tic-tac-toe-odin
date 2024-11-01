@@ -187,11 +187,10 @@ let displayController = function(){
     const boardContainer=document.querySelector('.board-container');
 
     const closeMessageBox = function(){
-        console.log('bladsdfsdfdsf');
+
         if (displayController.messageBox.style.display='flex')
             {displayController.messageBox.style.display='none'}
-    //     else if (displayController.messageBox.style.display='block')
-    //    {displayController.messageBox.style.display='none'}
+        
     }
 
     const captureNameInputs = function(){
@@ -205,8 +204,8 @@ let displayController = function(){
         console.log(displayController.playerOneName.value);
         console.log({displayController});
         gameboard.currentPlayer=firstPlayerObject.name;
-        playerOneName.style.backgroundColor='yellow';
-        playerTwoName.style.backgroundColor='yellow';
+        playerOneName.style.backgroundColor='rgb(245, 245, 133)';
+        playerTwoName.style.backgroundColor='rgb(245, 245, 133)';
         // namesText.style.display='none';
 
 
@@ -220,7 +219,7 @@ let displayController = function(){
 
 
     const getNumberFromClick = function (event){
-console.log(gameboard.currentPlayer);
+    console.log(gameboard.currentPlayer);
         
 
 
@@ -272,20 +271,8 @@ square8.innerText=gameboard.board[8];
 
         resetButton.addEventListener('click', gameboard.resetBoardAndGame);
 
-        // messageBox.addEventListener('click', messageBox.style.display='none');
 
 
-        // player1Score.innerText=firstPlayerObject.score;
-        // player2Score.innerText=secondPlayerObject.score;
-
-
-
-
-
-
-
-
-// console.log(getArrayNumberFromClick.playerChoiceFromClick);
 
 
 
